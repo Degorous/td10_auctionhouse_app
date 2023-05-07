@@ -7,9 +7,17 @@ class User < ApplicationRecord
   validates :cpf, uniqueness: true
   validate :validate_cpf
 
+  before_create :admin_email
+
   def validate_cpf
     return if CPF.valid?(cpf)
 
-    errors.add(:cpf, "inválido")
+    errors.add(:cpf, "CPF inválido")
+  end
+
+  def admin_email
+    if email.include?('@leilaodogalpao.com.br')
+      self.admin = true
+    end
   end
 end
