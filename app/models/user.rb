@@ -3,13 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :email, :cpf, :password, presence: true
+  validates :cpf, presence: true
   validates :cpf, uniqueness: true
   validate :validate_cpf
 
   def validate_cpf
     return if CPF.valid?(cpf)
 
-    errors.add(:cpf, "CPF inválido")
+    errors.add(:cpf, "inválido")
   end
 end
