@@ -21,6 +21,9 @@
       <% else %>
         <%= link_to 'Entrar', new_user_session_path %>
       <% end %>
+      <% if current_user.present? && current_user.admin? %>
+        <%= link_to 'Cadastrar Item', new_item_path %>
+      <% end %>
     </nav>
   </header>
     <div>

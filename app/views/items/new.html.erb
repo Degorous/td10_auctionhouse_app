@@ -1,0 +1,45 @@
+<h1>Cadastrar novo item</h1>
+
+<% if @item.errors.any?%>
+  <ul>
+    <% @item.errors.full_messages.each do |msg| %>
+      <li>
+        <%= msg %>
+      </li>
+    <%end%>
+  </ul>
+<%end%>
+
+<%= form_with model: @item do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :weight %>
+    <%= f.text_field :weight %>
+  </div>
+  <div>
+    <%= f.label :height %>
+    <%= f.text_field :height %>
+  </div>
+  <div>
+    <%= f.label :width %>
+    <%= f.text_field :width %>
+  </div>
+  <div>
+    <%= f.label :depth %>
+    <%= f.text_field :depth %>
+  </div>
+    <div>
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, @categories, :id, :name %>
+  </div>
+  <div>
+    <%= f.submit 'Salvar' %>
+  </div>
+<%end%>
