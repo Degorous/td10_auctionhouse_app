@@ -40,6 +40,10 @@
     <%= f.collection_select :category_id, @categories, :id, :name %>
   </div>
   <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div>
     <%= f.submit 'Salvar' %>
   </div>
 <%end%>

@@ -2,6 +2,9 @@
 
 <div>
   <dl>
+    <% if @item.image.attached? %>
+      <%= image_tag @item.image %>
+    <%end%>
     <dt>Descrição:</dt>
     <dd>
       <%= @item.description %>

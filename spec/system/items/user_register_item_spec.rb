@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra item' do
-  it 'a partir do menu' do
+  it 'não vê menu' do
     user = User.create!(email: 'andre@mail.com', cpf: '720.978.860-35', password: 'password')
 
     login_as(user)
@@ -40,6 +40,7 @@ describe 'Usuário cadastra item' do
     fill_in 'Largura', with: '60'
     fill_in 'Profundidade', with: '12'
     select 'Periférico', from: 'Categoria'
+    attach_file 'Imagem', Rails.root.join("spec/support/imgs/g-413.webp")
     click_on 'Salvar'
 
     expect(page).to have_content 'Item registrado com sucesso'
@@ -48,6 +49,7 @@ describe 'Usuário cadastra item' do
     expect(page).to have_content 'Dimensão: 5 cm x 60 cm x 12 cm'
     expect(page).to have_content 'Peso: 800 g'
     expect(page).to have_content 'Categoria: Periférico'
+    expect(page).to have_css "img[src*='g-413']"
     expect(page).to have_content 'Código: 0DLC3WATKO'
   end
 end
