@@ -1,0 +1,14 @@
+<h1>Cadastrar novo Lote</h1>
+
+<% if @lot.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @lot.errors.full_messages.each do |msg| %>
+      <li>
+        <%= msg %>
+      </li>
+    <%end%>
+  </ul>
+<%end%>
+
+<%= render 'form_lot' %>

@@ -2,6 +2,7 @@ pt-BR:
   activerecord:
     models:
       item: 'Item'
+      lot: 'Lote'
     attributes:
       item:
         name: 'Nome'
@@ -13,3 +14,11 @@ pt-BR:
         code: 'Código'
         category_id: 'Categoria'
         image: 'Imagem'
+      lot:
+        code: 'Código'
+        start_date: 'Data de Início'
+        finish_date: 'Data de Fim'
+        start_bid: 'Lance Inicial'
+        increase_bid: 'Diferença entre Lances'
+        started_by: 'Cadastrado por'
+        finished_by: 'Aprovado por'

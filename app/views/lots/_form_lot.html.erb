@@ -1,0 +1,25 @@
+<%= form_with model: @lot do |f| %>
+  <div>
+    <%= f.label :code %>:
+    <%= f.text_field :code %>
+  </div>
+  <div>
+    <%= f.label :start_date %>:
+    <%= f.date_field :start_date %>
+  </div>
+  <div>
+    <%= f.label :finish_date %>:
+    <%= f.date_field :finish_date %>
+  </div>
+  <div>
+    <%= f.label :start_bid %>:
+    <%= f.number_field :start_bid %>
+  </div>
+  <div>
+    <%= f.label :increase_bid %>:
+    <%= f.number_field :increase_bid %>
+  </div>
+  <div>
+    <%= f.submit 'Salvar' %>
+  </div>
+<%end%>

@@ -23,6 +23,7 @@
       <% end %>
       <% if current_user.present? && current_user.admin? %>
         <%= link_to 'Cadastrar Item', new_item_path %>
+        <%= link_to 'Cadastrar Lote', new_lot_path %>
       <% end %>
     </nav>
   </header>

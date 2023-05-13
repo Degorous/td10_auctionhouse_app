@@ -4,7 +4,7 @@ class Item < ApplicationRecord
 
   validates :name, :description, :weight, :height, :depth, presence: true
 
-  before_validation :generate_code
+  before_validation :generate_code, on: :create
 
   private
 
