@@ -1,24 +1,18 @@
 <h1>Detalhes do Lote <%= @lot.code %> </h1>
 
 <dl>
-  <dt>
-    <%= Lot.human_attribute_name 'start_date' %>:
-  </dt>
-  <dd>
-    <%= I18n.localize(@lot.start_date) %>
-  </dd>
-
-  <dt>
-    <%= Lot.human_attribute_name 'finish_date' %>:
-  </dt>
-  <dd>
-    <%= I18n.localize(@lot.finish_date) %>
-  </dd>
-
-  <dt>
-    <%= Lot.human_attribute_name 'start_bid' %>:
-  </dt>
-  <dd>
-    R$<%= @lot.start_bid %>,00
-  </dd>
+  <dt><%= Lot.human_attribute_name 'start_date' %>:</dt>
+  <dd><%= I18n.localize(@lot.start_date) %></dd>
+  <dt><%= Lot.human_attribute_name 'finish_date' %>:</dt>
+  <dd><%= I18n.localize(@lot.finish_date) %></dd>
+  <dt><%= Lot.human_attribute_name 'start_bid' %>:</dt>
+  <dd>R$<%= @lot.start_bid %>,00</dd>
+  <dt><%= Lot.human_attribute_name 'status' %> do Lote:</dt>
+  <dd><%= I18n.translate(@lot.status) %></dd>
 </dl>
+
+<h2>Itens do Lote</h2>
+
+<% @lot.items.each do |item| %>
+  <%= item.name %>
+<%end%>

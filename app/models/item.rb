@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  has_many :lot_items
+  has_many :lots, through: :lot_items
   belongs_to :category
   has_one_attached :image
 

@@ -1,19 +1,10 @@
 pt-BR:
+  pending: 'Aguardando Aprovação'
+  approved: 'Aprovado'
   activerecord:
     models:
-      item: 'Item'
       lot: 'Lote'
     attributes:
-      item:
-        name: 'Nome'
-        description: 'Descrição'
-        weight: 'Peso'
-        height: 'Altura'
-        width: 'Largura'
-        depth: 'Profundidade'
-        code: 'Código'
-        category_id: 'Categoria'
-        image: 'Imagem'
       lot:
         code: 'Código'
         start_date: 'Data de Início'

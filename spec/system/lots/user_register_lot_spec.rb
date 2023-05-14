@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Admin cadastra pedido' do
-  it 'com sucesso' do
+describe 'Admin cadastra lote' do
+  it 'na página certa' do
     admin = User.create!(email: 'andre@leilaodogalpao.com.br', cpf: '720.978.860-35', password: 'password')
 
     login_as admin
@@ -36,6 +36,7 @@ describe 'Admin cadastra pedido' do
     expect(page).to have_content 'Detalhes do Lote ABC123456'
     expect(page).to have_content "Data de Início: #{I18n.localize(1.day.from_now.to_date)}"
     expect(page).to have_content "Data de Fim: #{I18n.localize(2.days.from_now.to_date)}"
+    expect(page).to have_content 'Status do Lote: Aguardando Aprovação'
     expect(page).to have_content "Lance Inicial: R$100,00"
   end
 
