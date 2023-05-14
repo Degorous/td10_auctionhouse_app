@@ -13,6 +13,20 @@
 
 <h2>Itens do Lote</h2>
 
-<% @lot.items.each do |item| %>
-  <%= item.name %>
+<% if current_user.admin? && @lot.pending?%>
+  <div>
+    <%= link_to 'Adicionar Item', new_lot_lot_item_path(lot_id: @lot.id) %>
+  </div>
+  <div>
+    <% @lot.items.each do |item| %>
+      <%= item.name %>
+      <%= button_to 'Remover Item', lot_lot_item_path(item.lot, item.lot_item), method: :delete, id: dom_id(item) %>
+    <%end%>
+  </div>
+<% else %>
+  <div>
+    <% @lot.items.each do |item| %>
+      <%= item.name %>
+    <%end%>
+  </div>
 <%end%>

@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
-  has_many :lot_items
-  has_many :lots, through: :lot_items
   belongs_to :category
+  has_one :lot_item
+  has_one :lot, through: :lot_item
   has_one_attached :image
 
   validates :name, :description, :weight, :height, :depth, presence: true
