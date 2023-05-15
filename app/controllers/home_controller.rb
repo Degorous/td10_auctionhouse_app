@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @lots_approved = Lot.approved
-    @lots_pending = Lot.pending
+    @lots_ongoing = Lot.approved.where("finish_date >= :current_date AND start_date <= :current_date", current_date: Date.current)
+    @lots_future = Lot.approved.where("start_date > ?", Date.current)
   end
 end

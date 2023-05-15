@@ -1,6 +1,6 @@
 class LotsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_lot, only: [:show]
+  before_action :set_lot, only: [:show, :approved]
 
   def show;end
 
@@ -10,13 +10,18 @@ class LotsController < ApplicationController
 
   def create
     @lot = Lot.new(lot_params)
+    @lot.lot_creator = current_user
     if @lot.save
-      @lot.started_by = current_user
       redirect_to @lot, notice: 'Lote criado com sucesso'
     else
       flash.now[:notice] = "Não foi possível criar o Lote"
       render 'new'
     end
+  end
+
+  def approved
+    @lot.approved!
+    redirect_to @lot
   end
 
   private
