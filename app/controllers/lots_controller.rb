@@ -1,6 +1,10 @@
 class LotsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_lot, only: [:show, :approved]
+
+  def index
+    @lots_ongoing = Lot.approved.where("finish_date >= :current_date AND start_date <= :current_date", current_date: Date.current)
+    @lots = Lot.pending
+  end
 
   def show;end
 

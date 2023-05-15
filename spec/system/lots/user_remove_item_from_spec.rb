@@ -17,6 +17,7 @@ describe 'Usuário remove item do lote' do
 
     login_as admin
     visit root_path
+    click_on 'Lotes'
     click_on lot.code
     find_button('Remover Item', id: dom_id(item_b)).click
 

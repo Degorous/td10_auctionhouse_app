@@ -1,23 +1,25 @@
 require 'rails_helper'
 
 describe 'Usuário vê detalhes do lote' do
-  it 'e deve estar autenticado' do
-    lot = Lot.create!(code: 'ABC123456', start_date: 1.day.from_now.to_date, finish_date: 1.week.from_now.to_date,
-                      start_bid: 100, increase_bid: 10, status: :approved)
-    
+  it 'e não precisa estar autenticado' do
+    lot = Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+                      start_bid: 100, increase_bid: 10, status: 5)
+                      
     visit root_path
+    click_on 'Lotes'
     click_on lot.code
     
-    expect(current_path).to eq new_user_session_path
+    expect(page).to have_content "Detalhes do Lote #{lot.code}"
   end
 
   it 'e vê informações adicionais' do
     user = User.create!(email: 'andre@mail.com', cpf: '720.978.860-35', password: 'password')
-    lot = Lot.create!(code: 'ABC123456', start_date: 1.day.from_now.to_date, finish_date: 1.week.from_now.to_date,
-                      start_bid: 100, increase_bid: 10)
+    lot = Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+                      start_bid: 100, increase_bid: 10, status: 5)
     
     login_as user
     visit root_path
+    click_on 'Lotes'
     click_on lot.code
     
     expect(current_path).to eq lot_path(lot.id)
@@ -30,8 +32,8 @@ describe 'Usuário vê detalhes do lote' do
   
   it 'e vê items do lote' do
     user = User.create!(email: 'andre@mail.com', cpf: '720.978.860-35', password: 'password')
-    lot = Lot.create!(code: 'ABC123456', start_date: 1.day.from_now.to_date, finish_date: 1.week.from_now.to_date,
-                      start_bid: 100, increase_bid: 10)
+    lot = Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+                      start_bid: 100, increase_bid: 10, status: 5)
     category = Category.create!(name: 'Periférico')
     item_a = Item.create!(name: 'G-413 CARBON', description: 'Teclado Gamer', weight: '1105', width: '445',
                           height: '132', depth: '34', category: category)
@@ -45,6 +47,7 @@ describe 'Usuário vê detalhes do lote' do
     
     login_as user
     visit root_path
+    click_on 'Lotes'
     click_on lot.code
 
     expect(page).to have_content 'Itens do Lote'

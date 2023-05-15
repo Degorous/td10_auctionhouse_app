@@ -13,6 +13,7 @@ describe 'Usuário atualiza status do lote' do
 
     login_as admin
     visit root_path
+    click_on 'Lotes'
     click_on lot.code
     click_on 'Marcar como APROVADO'
 
@@ -33,6 +34,7 @@ describe 'Usuário atualiza status do lote' do
 
     login_as admin
     visit root_path
+    click_on 'Lotes'
     click_on lot.code
 
     expect(current_path).to eq lot_path(lot.id)
@@ -53,6 +55,7 @@ describe 'Usuário atualiza status do lote' do
 
     login_as admin_2
     visit root_path
+    click_on 'Lotes'
     click_on lot.code
     click_on 'Marcar como APROVADO'
 

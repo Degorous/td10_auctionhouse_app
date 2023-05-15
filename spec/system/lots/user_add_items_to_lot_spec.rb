@@ -13,6 +13,7 @@ describe 'Usuário adiciona items ao lote' do
 
     login_as admin
     visit root_path
+    click_on 'Lotes'
     click_on lot.code
     click_on 'Adicionar Item'
     select 'G-413 CARBON', from: 'Item'
@@ -37,6 +38,7 @@ describe 'Usuário adiciona items ao lote' do
 
     login_as admin
     visit root_path
+    click_on 'Lotes'
     click_on lot.code
     click_on 'Adicionar Item'
 

@@ -13,7 +13,7 @@
 
 <h2>Itens do Lote</h2>
 
-<% if current_user.admin? && @lot.pending?%>
+<% if current_user&.admin? && @lot.pending?%>
   <% if current_user != @lot.lot_creator %>
     <div>
       <%= button_to 'Marcar como APROVADO', approved_lot_path, method: :post%>
