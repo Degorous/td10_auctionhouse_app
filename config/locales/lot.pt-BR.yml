@@ -1,6 +1,7 @@
 pt-BR:
   pending: 'Aguardando Aprovação'
   approved: 'Aprovado'
+  last_bid: 'Último Lance'
   activerecord:
     models:
       lot: 'Lote'
@@ -13,3 +14,4 @@ pt-BR:
         increase_bid: 'Diferença entre Lances'
         started_by: 'Cadastrado por'
         finished_by: 'Aprovado por'
+        bid: 'Lance'

@@ -1,5 +1,5 @@
 class LotsController < ApplicationController
-  before_action :set_lot, only: [:show, :approved]
+  before_action :set_lot, only: [:show, :approved, :bid]
 
   def index
     @lots_ongoing = Lot.approved.where("finish_date >= :current_date AND start_date <= :current_date", current_date: Date.current)
@@ -26,6 +26,16 @@ class LotsController < ApplicationController
   def approved
     @lot.approved!
     redirect_to @lot
+  end
+
+  def bid
+    @lot.bid = params[:lot][:bid]
+    @lot.bid_user = current_user
+    if @lot.save
+      redirect_to @lot, notice: 'Lance efetuado com sucesso'
+    else
+      redirect_to @lot, notice: @lot.errors.full_messages.join
+    end
   end
 
   private

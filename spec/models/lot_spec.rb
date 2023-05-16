@@ -56,4 +56,30 @@ RSpec.describe Lot, type: :model do
       expect(result).to eq true
     end
   end
+
+  describe 'code uniqueness' do
+    it 'códigos diferentes' do
+      Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+                              start_bid: 100, increase_bid: 10, status: 5)
+      lot = Lot.new(code: 'FGH123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+                          start_bid: 100, increase_bid: 10, status: 5)
+
+      result = lot.valid?
+
+      expect(result).to eq true
+    end
+
+    it 'códigos iguais' do
+      Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+                  start_bid: 100, increase_bid: 10, status: 5)
+      lot = Lot.new(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+                    start_bid: 100, increase_bid: 10, status: 5)
+      
+      lot.valid?
+      result = lot.errors.include?(:code)
+      
+      expect(lot.valid?).to eq false
+      expect(result).to eq true
+    end
+  end
 end

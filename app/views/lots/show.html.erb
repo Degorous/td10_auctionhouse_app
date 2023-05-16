@@ -5,11 +5,24 @@
   <dd><%= I18n.localize(@lot.start_date) %></dd>
   <dt><%= Lot.human_attribute_name 'finish_date' %>:</dt>
   <dd><%= I18n.localize(@lot.finish_date) %></dd>
-  <dt><%= Lot.human_attribute_name 'start_bid' %>:</dt>
-  <dd>R$<%= @lot.start_bid %>,00</dd>
+  <% if @lot.bid.blank? %>
+    <dt><%= Lot.human_attribute_name 'start_bid' %>:</dt>
+    <dd>R$<%= @lot.start_bid %>,00</dd>
+  <%else%>
+    <dt><%= I18n.translate('last_bid') %>:</dt>
+    <dd>R$<%= @lot.bid %>,00</dd>
+  <%end%>
   <dt><%= Lot.human_attribute_name 'status' %> do Lote:</dt>
   <dd><%= I18n.translate(@lot.status) %></dd>
 </dl>
+
+<% if user_signed_in? %>
+  <%= form_with scope: :lot, url: bid_lot_path, method: :patch do |f| %>
+    <%= f.label :bid %>:
+    <%= f.number_field :bid %>
+    <%= f.submit 'Confirmar' %>
+  <%end%>
+<%end%>
 
 <h2>Itens do Lote</h2>
 
