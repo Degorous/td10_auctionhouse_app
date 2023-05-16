@@ -34,7 +34,7 @@ class LotsController < ApplicationController
     if @lot.save
       redirect_to @lot, notice: 'Lance efetuado com sucesso'
     else
-      redirect_to @lot, notice: @lot.errors.full_messages.join
+      redirect_to @lot, notice: @lot.errors.full_messages.join #Teste unitário para lances e lógica primeiro lance
     end
   end
 

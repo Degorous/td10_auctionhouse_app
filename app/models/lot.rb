@@ -11,7 +11,7 @@ class Lot < ApplicationRecord
   validate :validate_bid
   enum status: { pending: 0, approved: 5 }
 
-  before_validation :upcase_code, on: :create
+  before_create :upcase_code
 
   private
 
@@ -26,10 +26,18 @@ class Lot < ApplicationRecord
   end
 
   def validate_bid
-    return if self.attribute_in_database(:bid).nil?
-    total = self.attribute_in_database(:bid) + self.increase_bid
-    return if self.bid >= total
-    
-    errors.add(:bid, "inválido, lance mínimo R$#{total},00")
+    return if self.bid.nil?
+
+    if self.attribute_in_database(:bid).nil?
+      return if self.bid > self.start_bid 
+      
+      total = self.start_bid + 1
+      errors.add(:bid, "inválido, lance mínimo R$#{total},00")
+    else
+      total = self.attribute_in_database(:bid) + self.increase_bid
+      return if self.bid >= total
+      
+      errors.add(:bid, "inválido, lance mínimo R$#{total},00")
+    end
   end
 end

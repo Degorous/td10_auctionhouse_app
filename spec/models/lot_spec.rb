@@ -82,4 +82,64 @@ RSpec.describe Lot, type: :model do
       expect(result).to eq true
     end
   end
+
+  describe 'validate_bid' do
+    it 'lance é nulo' do
+      lot = Lot.new(bid: nil)
+
+      lot.valid?
+      result = lot.errors.include?(:bid)
+
+      expect(result).to eq false
+    end
+
+    it 'lance é menor que lance inicial' do
+      lot = Lot.new(start_bid: 100, bid: 90)
+
+      lot.valid?
+      result = lot.errors.include?(:bid)
+
+      expect(result).to eq true
+    end
+
+    it 'lance é maior que lance inicial' do
+      lot = Lot.new(start_bid: 100, bid: 101)
+
+      lot.valid?
+      result = lot.errors.include?(:bid)
+
+      expect(result).to eq false
+    end
+
+    it 'lance é igual ao lance inicial' do
+      lot = Lot.new(start_bid: 100, bid: 100)
+
+      lot.valid?
+      result = lot.errors.include?(:bid)
+
+      expect(result).to eq true
+    end
+
+    it 'lance é menor que lance anterior' do
+      lot = Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+        start_bid: 100, increase_bid: 10, status: 5, bid: 101)
+      lot.bid = 105
+
+      lot.valid?
+      result = lot.errors.include?(:bid)
+
+      expect(result).to eq true
+    end
+
+    it 'lance é maior que lance anterior' do
+      lot = Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+        start_bid: 100, increase_bid: 10, status: 5, bid: 101)
+      lot.bid = 111
+
+      lot.valid?
+      result = lot.errors.include?(:bid)
+
+      expect(result).to eq false
+    end
+  end
 end
