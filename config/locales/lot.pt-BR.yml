@@ -1,6 +1,8 @@
 pt-BR:
   pending: 'Aguardando Aprovação'
   approved: 'Aprovado'
+  finished: 'Encerrado'
+  canceled: 'Cancelado'
   last_bid: 'Último Lance'
   activerecord:
     models:

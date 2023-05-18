@@ -1,5 +1,7 @@
 class LotsController < ApplicationController
-  before_action :set_lot, only: [:show, :approved, :bid]
+  before_action :authenticate_user!, :authenticate_admin, only: [:new, :create, :expired]
+  before_action :authenticate_user!, only: [:winner]
+  before_action :set_lot, only: [:show, :approved, :bid, :closed]
 
   def index
     @lots_ongoing = Lot.approved.where("finish_date >= :current_date AND start_date <= :current_date", current_date: Date.current)
@@ -38,6 +40,28 @@ class LotsController < ApplicationController
     end
   end
 
+  def expired
+    @lots = Lot.where("finish_date < :current_date", current_date: Date.current)
+  end
+
+  def closed
+    if @lot.bid_user == nil
+      @lot.canceled!
+      lot_items = @lot.lot_items
+      lot_items.destroy_all
+
+      redirect_to @lot, notice: "Esse lote foi cancelado"
+    else
+      @lot.finished!
+      redirect_to @lot, notice: 'Lote finalizado'
+    end
+  end
+  
+  def winner
+    @user_lots = current_user.lots
+    @lots_finished = Lot.finished
+  end
+
   private
 
   def set_lot
@@ -46,5 +70,11 @@ class LotsController < ApplicationController
 
   def lot_params
     params.require(:lot).permit(:code, :start_date, :finish_date, :start_bid, :increase_bid)
+  end
+
+  def authenticate_admin
+    if !current_user.admin?
+      redirect_to new_user_session_path
+    end
   end
 end

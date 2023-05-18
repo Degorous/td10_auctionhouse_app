@@ -59,9 +59,9 @@ RSpec.describe Lot, type: :model do
 
   describe 'code uniqueness' do
     it 'códigos diferentes' do
-      Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+      Lot.create!(code: 'ABC123456', start_date: 1.day.from_now.to_date, finish_date: 1.week.from_now.to_date,
                               start_bid: 100, increase_bid: 10, status: 5)
-      lot = Lot.new(code: 'FGH123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+      lot = Lot.new(code: 'FGH123456', start_date: 1.day.from_now.to_date, finish_date: 1.week.from_now.to_date,
                           start_bid: 100, increase_bid: 10, status: 5)
 
       result = lot.valid?
@@ -70,9 +70,9 @@ RSpec.describe Lot, type: :model do
     end
 
     it 'códigos iguais' do
-      Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+      Lot.create!(code: 'ABC123456', start_date: 1.day.from_now.to_date, finish_date: 1.week.from_now.to_date,
                   start_bid: 100, increase_bid: 10, status: 5)
-      lot = Lot.new(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+      lot = Lot.new(code: 'ABC123456', start_date: 1.day.from_now.to_date, finish_date: 1.week.from_now.to_date,
                     start_bid: 100, increase_bid: 10, status: 5)
       
       lot.valid?
@@ -121,7 +121,7 @@ RSpec.describe Lot, type: :model do
     end
 
     it 'lance é menor que lance anterior' do
-      lot = Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+      lot = Lot.create!(code: 'ABC123456', start_date: 1.day.from_now.to_date, finish_date: 1.week.from_now.to_date,
         start_bid: 100, increase_bid: 10, status: 5, bid: 101)
       lot.bid = 105
 
@@ -132,7 +132,7 @@ RSpec.describe Lot, type: :model do
     end
 
     it 'lance é maior que lance anterior' do
-      lot = Lot.create!(code: 'ABC123456', start_date: 1.day.ago.to_date, finish_date: 1.week.from_now.to_date,
+      lot = Lot.create!(code: 'ABC123456', start_date: 1.day.from_now.to_date, finish_date: 1.week.from_now.to_date,
         start_bid: 100, increase_bid: 10, status: 5, bid: 101)
       lot.bid = 111
 

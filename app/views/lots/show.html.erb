@@ -16,7 +16,15 @@
   <dd><%= I18n.translate(@lot.status) %></dd>
 </dl>
 
-<% if user_signed_in? %>
+<% if current_user&.admin? && @lot.expired? %>
+  <% if @lot.approved? %>
+    <div>
+        <%= button_to 'Encerrar Lote', closed_lot_path, method: :post%>
+    </div>
+  <%end%>
+<%end%>
+
+<% if user_signed_in? && !@lot.expired? %>
   <%= form_with scope: :lot, url: bid_lot_path, method: :patch do |f| %>
     <%= f.label :bid %>:
     <%= f.number_field :bid %>
