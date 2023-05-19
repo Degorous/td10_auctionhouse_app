@@ -20,6 +20,10 @@ class ItemsController < ApplicationController
 
   def show; end
 
+  def index
+    @items = Item.all
+  end
+
   private
 
   def set_item

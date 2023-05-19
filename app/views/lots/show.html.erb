@@ -24,7 +24,7 @@
   <%end%>
 <%end%>
 
-<% if user_signed_in? && !@lot.expired? %>
+<% if user_signed_in? && !@lot.expired? && !current_user.admin? %>
   <%= form_with scope: :lot, url: bid_lot_path, method: :patch do |f| %>
     <%= f.label :bid %>:
     <%= f.number_field :bid %>
@@ -46,7 +46,21 @@
   <div>
     <% @lot.items.each do |item| %>
       <div>
-        <%= item.name %>
+        <div>
+          <% if item.image.attached? %>
+            <%= image_tag item.image, size: "200x200" %>
+          <%end%>
+        </div>
+        <dl>
+          <div>
+            <dt>Nome: </dt>
+            <dd><%= item.name %></dd>
+          </div>
+          <div>
+            <dt>Descrição: </dt>
+            <dd><%= item.description %></dd>
+          </div>
+        </dl>
         <%= button_to 'Remover Item', lot_lot_item_path(item.lot, item.lot_item), method: :delete, id: dom_id(item) %>
       </div>
     <%end%>
@@ -55,8 +69,20 @@
   <div>
     <% @lot.items.each do |item| %>
       <div>
-        <%= item.name %>
-      </div>
+          <% if item.image.attached? %>
+            <%= image_tag item.image, size: "200x200" %>
+          <%end%>
+        </div>
+        <dl>
+          <div>
+            <dt>Nome: </dt>
+            <dd><%= item.name %></dd>
+          </div>
+          <div>
+            <dt>Descrição: </dt>
+            <dd><%= item.description %></dd>
+          </div>
+        </dl>
     <%end%>
   </div>
 <%end%>

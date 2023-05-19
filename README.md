@@ -43,6 +43,11 @@ No terminal, abra a pasta do projeto e digite:
 bin/setup
 ```
 
+Logo após:
+```
+rails db:seed
+```
+
 ## Como rodar os testes
 
 No terminal, abra a pasta do projeto e digite:
@@ -69,9 +74,7 @@ http://localhost:3000/
 
 📝 Algumas validações de segurança ficaram pendentes
 
-📝 
-
-📝 
+📝 Estão faltando alguns testes para cobertura completa
 
 ### Participante: 
 |name|email|present|

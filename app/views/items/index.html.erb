@@ -1,0 +1,19 @@
+<h1>Items Cadastrados</h1>
+
+<% @items.each do |item| %>
+  <div>
+    <% if item.image.attached? %>
+      <%= image_tag item.image, size: "200x200" %>
+    <%end%>
+  </div>
+  <dl>
+    <div>
+      <dt>Nome: </dt>
+      <dd><%= item.name %></dd>
+    </div>
+    <div>
+      <dt>Descrição: </dt>
+      <dd><%= item.description %></dd>
+    </div>
+  </dl>
+<%end%>

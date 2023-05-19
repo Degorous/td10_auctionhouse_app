@@ -24,6 +24,7 @@
       <% end %>
 
       <%= link_to 'Lotes', lots_path %>
+      <%= link_to 'Items', items_path %>
 
       <% if current_user&.admin? %>
         <%= link_to 'Cadastrar Item', new_item_path %>
