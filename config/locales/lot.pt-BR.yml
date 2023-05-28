@@ -4,6 +4,14 @@ pt-BR:
     approved: 'Aprovado'
     finished: 'Encerrado'
     canceled: 'Cancelado'
+    create:
+      lot_success: 'Lote criado com sucesso'
+      lot_fail: 'Não foi possível criar o Lote'
+    bid:
+      bid_success: 'Lance efetuado com sucesso'
+    closed:
+      lot_canceled: 'Esse lote foi cancelado'
+      lot_finished: 'Lote finalizado'
     expired:
       lots_expired: 'Lotes Expirados'
     index:

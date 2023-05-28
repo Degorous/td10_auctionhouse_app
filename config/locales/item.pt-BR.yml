@@ -7,6 +7,9 @@ pt-BR:
       save: 'Salvar'
     show:
       dimension: 'Dimensão'
+    create:
+      item_success: 'Item registrado com sucesso'
+      item_fail: 'Não foi possível registrar o item'
   activerecord:
     models:
       item:

@@ -18,9 +18,9 @@ class LotsController < ApplicationController
     @lot = Lot.new(lot_params)
     @lot.lot_creator = current_user
     if @lot.save
-      redirect_to @lot, notice: 'Lote criado com sucesso'
+      redirect_to @lot, notice: t('.lot_success')
     else
-      flash.now[:notice] = "Não foi possível criar o Lote"
+      flash.now[:notice] = t('.lot_fail')
       render 'new'
     end
   end
@@ -34,9 +34,9 @@ class LotsController < ApplicationController
     @lot.bid = params[:lot][:bid]
     @lot.bid_user = current_user
     if @lot.save
-      redirect_to @lot, notice: 'Lance efetuado com sucesso'
+      redirect_to @lot, notice: t('.bid_success')
     else
-      redirect_to @lot, notice: @lot.errors.full_messages.join #Teste unitário para lances e lógica primeiro lance
+      redirect_to @lot, notice: @lot.errors.full_messages.join
     end
   end
 
@@ -50,10 +50,10 @@ class LotsController < ApplicationController
       lot_items = @lot.lot_items
       lot_items.destroy_all
 
-      redirect_to @lot, notice: "Esse lote foi cancelado"
+      redirect_to @lot, notice: t('.lot_canceled')
     else
       @lot.finished!
-      redirect_to @lot, notice: 'Lote finalizado'
+      redirect_to @lot, notice: t('.lot_finished')
     end
   end
   

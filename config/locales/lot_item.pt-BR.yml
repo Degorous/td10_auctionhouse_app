@@ -1,0 +1,6 @@
+pt-BR:
+  lot_items:
+    create:
+      add_item: 'Item adicionado com sucesso'
+    destroy:
+      remove_item: 'Item removido com sucesso'

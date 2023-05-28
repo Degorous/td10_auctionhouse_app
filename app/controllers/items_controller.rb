@@ -10,10 +10,10 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to @item, notice: 'Item registrado com sucesso'
+      redirect_to @item, notice: t('.item_success')
     else
       @categories = Category.all
-      flash.now[:notice] = 'Não foi possível registrar o item'
+      flash.now[:notice] = t('.item_fail')
       render 'new'
     end
   end

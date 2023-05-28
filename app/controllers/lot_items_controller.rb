@@ -11,7 +11,7 @@ class LotItemsController < ApplicationController
     lot_item_params = params.require(:lot_item).permit(:item_id)
     @lot.lot_items.create(lot_item_params)
 
-    redirect_to @lot, notice: 'Item adicionado com sucesso'
+    redirect_to @lot, notice: t('.add_item')
   end
 
   def destroy
@@ -19,6 +19,6 @@ class LotItemsController < ApplicationController
     @lot_item = @lot.lot_items.find(params[:id])
     @lot_item.destroy
     
-    redirect_to @lot, notice: 'Item removido com sucesso'
+    redirect_to @lot, notice: t('.remove_item')
   end
 end
