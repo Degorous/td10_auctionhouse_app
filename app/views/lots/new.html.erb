@@ -1,7 +1,7 @@
-<h1>Cadastrar novo Lote</h1>
+<h1><%= t('.new_lot') %></h1>
 
 <% if @lot.errors.any? %>
-  <p>Verifique os erros abaixo:</p>
+  <p><%= t('.lot_error') %>:</p>
   <ul>
     <% @lot.errors.full_messages.each do |msg| %>
       <li>

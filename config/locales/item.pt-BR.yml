@@ -1,7 +1,17 @@
 pt-BR:
+  items:
+    index:
+      registered_items: 'Itens Cadastrados'
+    new:
+      new_item: 'Cadastrar novo item'
+      save: 'Salvar'
+    show:
+      dimension: 'Dimensão'
   activerecord:
     models:
-      item: 'Item'
+      item:
+        one: 'Item'
+        other: 'Itens'
     attributes:
       item:
         name: 'Nome'

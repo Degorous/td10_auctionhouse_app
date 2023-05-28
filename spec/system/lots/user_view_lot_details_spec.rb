@@ -25,9 +25,9 @@ describe 'Usuário vê detalhes do lote' do
     expect(current_path).to eq lot_path(lot.id)
     expect(page).to have_content "Detalhes do Lote #{lot.code}"
     expect(page).to have_content "Data de Início: #{I18n.localize(lot.start_date)}"
-    expect(page).to have_content "Data de Fim: #{I18n.localize(lot.finish_date)}"
+    expect(page).to have_content "Data de Encerramento: #{I18n.localize(lot.finish_date)}"
     expect(page).to have_content "Lance Inicial: R$100,00"
-    expect(page).to have_content "Status do Lote: #{I18n.translate(lot.status)}"
+    expect(page).to have_content "Status do Lote: #{I18n.translate("lots.#{lot.status}")}"
   end
   
   it 'e vê items do lote' do

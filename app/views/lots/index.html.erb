@@ -1,4 +1,4 @@
-<h1>Lotes</h1>
+<h1><%= Lot.model_name.human(count: 2) %></h1>
 
 <% if current_user&.admin? %>
   <% @lots.each do |lot| %>
@@ -8,8 +8,8 @@
         <th>Lote <%= link_to lot.code, lot %></th>
       </tr>
       <tr>
-        <td>Data de Início</td>
-        <td>Data de encerramento</td>
+        <td><%= I18n.localize(lot.start_date) %></td>
+        <td><%= I18n.localize(lot.finish_date) %></td>
       </tr>
       <tr>
         <td><%= I18n.localize(lot.start_date) %></td>
@@ -17,7 +17,7 @@
       </tr>
       <tr>
         <td>
-          <%= I18n.translate(lot.status) %>
+          <%= I18n.translate("lots.#{lot.status}") %>
         </td>
       </tr>
     </table>
@@ -25,7 +25,7 @@
   <%end%>
 <%end%>
 
-<h2>Lotes em Andamento</h2>
+<h2><%= t('.lots_ongoing') %></h2>
 <div>
   <% @lots_ongoing.each do |lot| %>
     <div>
@@ -34,8 +34,8 @@
           <th>Lote <%= link_to lot.code, lot %></th>
         </tr>
         <tr>
-          <td>Data de Início</td>
-          <td>Data de encerramento</td>
+          <td><%= I18n.localize(lot.start_date) %></td>
+          <td><%= I18n.localize(lot.finish_date) %></td>
         </tr>
         <tr>
           <td><%= I18n.localize(lot.start_date) %></td>

@@ -12,24 +12,24 @@
   <body>
   <header>
     <%= link_to root_path do %>
-      <h1>Leilão de Estoque</h1>
+      <h1><%= t('.auction_house') %></h1>
     <% end %>
     <nav>
       <% if user_signed_in? %>
         <%= current_user.email %>
-        <%= link_to 'Meus Lotes', winner_lots_path %>
-        <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+        <%= link_to t('.user_lots'), winner_lots_path %>
+        <%= button_to t('.exit'), destroy_user_session_path, method: :delete %>
       <% else %>
-        <%= link_to 'Entrar', new_user_session_path %>
+        <%= link_to t('.login'), new_user_session_path %>
       <% end %>
 
-      <%= link_to 'Lotes', lots_path %>
-      <%= link_to 'Items', items_path %>
+      <%= link_to Lot.model_name.human(count: 2), lots_path %>
+      <%= link_to Item.model_name.human(count: 2), items_path %>
 
       <% if current_user&.admin? %>
-        <%= link_to 'Cadastrar Item', new_item_path %>
-        <%= link_to 'Cadastrar Lote', new_lot_path %>
-        <%= link_to 'Lotes Expirados', expired_lots_path %>
+        <%= link_to t('.new_item'), new_item_path %>
+        <%= link_to t('.new_lot'), new_lot_path %>
+        <%= link_to t('.expired_lots'), expired_lots_path %>
       <% end %>
     </nav>
   </header>

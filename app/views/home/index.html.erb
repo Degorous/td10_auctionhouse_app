@@ -1,4 +1,4 @@
-<h2>Lotes em Andamento</h2>
+<h2><%= t('.ongoing_lots') %></h2>
 
 <% @lots_ongoing.each do |lot| %>
   <div>
@@ -7,8 +7,8 @@
         <th>Lote <%= link_to lot.code, lot %></th>
       </tr>
       <tr>
-        <td>Data de Início</td>
-        <td>Data de encerramento</td>
+        <td><%= t('.start_date') %></td>
+        <td><%= t('.end_date') %></td>
       </tr>
       <tr>
         <td><%= I18n.localize(lot.start_date) %></td>
@@ -18,7 +18,7 @@
   </div>
 <%end%>
 
-<h2>Lotes Futuros</h2>
+<h2><%= t('.future_lots') %></h2>
 
 <% @lots_future.each do |lot| %>
   <div>
@@ -27,8 +27,8 @@
         <th>Lote <%= link_to lot.code, lot %></th>
       </tr>
       <tr>
-        <td>Data de Início</td>
-        <td>Data de encerramento</td>
+        <td><%= t('.start_date') %></td>
+        <td><%= t('.end_date') %></td>
       </tr>
       <tr>
         <td><%= I18n.localize(lot.start_date) %></td>

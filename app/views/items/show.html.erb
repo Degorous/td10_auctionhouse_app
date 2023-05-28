@@ -5,23 +5,23 @@
     <% if @item.image.attached? %>
       <%= image_tag @item.image %>
     <%end%>
-    <dt>Descrição:</dt>
+    <dt><%= Item.human_attribute_name 'description' %>:</dt>
     <dd>
       <%= @item.description %>
     </dd>
-    <dt>Peso:</dt>
+    <dt><%= Item.human_attribute_name 'weight' %>:</dt>
     <dd>
       <%= @item.weight %> g
     </dd>
-    <dt>Dimensão:</dt>
+    <dt><%= t('.dimension') %>:</dt>
     <dd>
       <%= @item.height %> cm x <%= @item.width %> cm x <%= @item.depth %> cm
     </dd>
-    <dt>Categoria:</dt>
+    <dt><%= Item.human_attribute_name 'category_id' %>:</dt>
     <dd>
       <%= @item.category.name%>
     </dd>
-    <dt>Código:</dt>
+    <dt><%= Item.human_attribute_name 'code' %>:</dt>
     <dd>
       <%= @item.code%>
     </dd>

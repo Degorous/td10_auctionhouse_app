@@ -4,7 +4,7 @@ class LotsController < ApplicationController
   before_action :set_lot, only: [:show, :approved, :bid, :closed]
 
   def index
-    @lots_ongoing = Lot.approved.where("finish_date >= :current_date AND start_date <= :current_date", current_date: Date.current)
+    @lots_ongoing = Lot.ongoing
     @lots = Lot.pending
   end
 
@@ -41,7 +41,7 @@ class LotsController < ApplicationController
   end
 
   def expired
-    @lots = Lot.where("finish_date < :current_date", current_date: Date.current)
+    @lots = Lot.expired
   end
 
   def closed

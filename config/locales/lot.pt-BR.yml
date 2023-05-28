@@ -1,17 +1,42 @@
 pt-BR:
-  pending: 'Aguardando Aprovação'
-  approved: 'Aprovado'
-  finished: 'Encerrado'
-  canceled: 'Cancelado'
-  last_bid: 'Último Lance'
+  lots:
+    pending: 'Aguardando Aprovação'
+    approved: 'Aprovado'
+    finished: 'Encerrado'
+    canceled: 'Cancelado'
+    expired:
+      lots_expired: 'Lotes Expirados'
+    index:
+      lots_ongoing: 'Lotes em Andamento'      
+    new:
+      new_lot: 'Cadastrar novo Lote'
+      lot_error: 'Verifique os erros abaixo'
+    show:
+      last_bid: 'Último Lance'
+      details: 'Detalhes do Lote'
+      lot_status: 'Status do Lote'
+      lot_closed: 'Encerrar Lote'
+      confirm_bid: 'Confirmar'
+      lot_items: 'Itens do Lote'
+      button_approved: 'Marcar como APROVADO'
+      add_item: 'Adicionar Item'
+      remove_item: 'Remover Item'
+    winner:
+      lots_finished: 'Lotes finalizados'
+      user_lots_winner: 'Seus lotes vencedores'
+      user_lots_blank: 'Você não possui lotes'
+      all_lots_finished: 'Todos os lotes finalizados'
+      lots_finished_blank: 'Não existem lotes finalizados'
   activerecord:
     models:
-      lot: 'Lote'
+      lot:
+        one: 'Lote'
+        other: 'Lotes'
     attributes:
       lot:
         code: 'Código'
         start_date: 'Data de Início'
-        finish_date: 'Data de Fim'
+        finish_date: 'Data de Encerramento'
         start_bid: 'Lance Inicial'
         increase_bid: 'Diferença entre Lances'
         started_by: 'Cadastrado por'

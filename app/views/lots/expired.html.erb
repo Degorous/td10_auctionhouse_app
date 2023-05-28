@@ -1,4 +1,4 @@
-<h1>Lotes Expirados</h1>
+<h1><%= t('.lots_expired') %></h1>
 
 <div>
 <% @lots.each do |lot| %>
@@ -8,8 +8,8 @@
         <th>Lote <%= link_to lot.code, lot %></th>
       </tr>
       <tr>
-        <td>Data de Início</td>
-        <td>Data de encerramento</td>
+        <td><%= I18n.localize(lot.start_date) %></td>
+        <td><%= I18n.localize(lot.finish_date) %></td>
       </tr>
       <tr>
         <td><%= I18n.localize(lot.start_date) %></td>

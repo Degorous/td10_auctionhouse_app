@@ -1,0 +1,10 @@
+pt-BR:
+  layouts:
+    application:
+      auction_house: 'Leilão de Estoque'
+      user_lots: 'Meus Lotes'
+      exit: 'Sair'
+      login: 'Entrar'
+      new_item: 'Cadastrar Item'
+      new_lot: 'Cadastrar Lote'
+      expired_lots: 'Lotes Expirados'

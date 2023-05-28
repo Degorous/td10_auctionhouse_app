@@ -14,8 +14,12 @@ class Lot < ApplicationRecord
 
   before_create :upcase_code
 
+  scope :ongoing, -> {approved.where("finish_date >= :current_date AND start_date <= :current_date", current_date: Date.current)}
+  scope :future, -> {approved.where("start_date > ?", Date.current)}
+  scope :expired, -> {where("finish_date < ?", Date.current)}
+
   def expired?
-    self.finish_date < Date.current   
+    self.finish_date < Date.current
   end
 
   private

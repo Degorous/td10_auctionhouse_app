@@ -1,4 +1,4 @@
-<h1>Detalhes do Lote <%= @lot.code %> </h1>
+<h1><%= t('.details') %> <%= @lot.code %> </h1>
 
 <dl>
   <dt><%= Lot.human_attribute_name 'start_date' %>:</dt>
@@ -9,17 +9,17 @@
     <dt><%= Lot.human_attribute_name 'start_bid' %>:</dt>
     <dd>R$<%= @lot.start_bid %>,00</dd>
   <%else%>
-    <dt><%= I18n.translate('last_bid') %>:</dt>
+    <dt><%= t('.last_bid') %>:</dt>
     <dd>R$<%= @lot.bid %>,00</dd>
   <%end%>
-  <dt><%= Lot.human_attribute_name 'status' %> do Lote:</dt>
-  <dd><%= I18n.translate(@lot.status) %></dd>
+  <dt><%= t('.lot_status') %>:</dt>
+  <dd><%= t("lots.#{@lot.status}") %></dd>
 </dl>
 
 <% if current_user&.admin? && @lot.expired? %>
   <% if @lot.approved? %>
     <div>
-        <%= button_to 'Encerrar Lote', closed_lot_path, method: :post%>
+        <%= button_to t('.lot_closed'), closed_lot_path, method: :post%>
     </div>
   <%end%>
 <%end%>
@@ -28,20 +28,20 @@
   <%= form_with scope: :lot, url: bid_lot_path, method: :patch do |f| %>
     <%= f.label :bid %>:
     <%= f.number_field :bid %>
-    <%= f.submit 'Confirmar' %>
+    <%= f.submit t('.confirm_bid') %>
   <%end%>
 <%end%>
 
-<h2>Itens do Lote</h2>
+<h2><%= t('.lot_items') %></h2>
 
 <% if current_user&.admin? && @lot.pending?%>
   <% if current_user != @lot.lot_creator %>
     <div>
-      <%= button_to 'Marcar como APROVADO', approved_lot_path, method: :post%>
+      <%= button_to t('.button_approved'), approved_lot_path, method: :post%>
     </div>
   <%end%>
   <div>
-    <%= link_to 'Adicionar Item', new_lot_lot_item_path(lot_id: @lot.id) %>
+    <%= link_to t('.add_item'), new_lot_lot_item_path(lot_id: @lot.id) %>
   </div>
   <div>
     <% @lot.items.each do |item| %>
@@ -53,15 +53,15 @@
         </div>
         <dl>
           <div>
-            <dt>Nome: </dt>
+            <dt> <%= Item.human_attribute_name 'name' %>: </dt>
             <dd><%= item.name %></dd>
           </div>
           <div>
-            <dt>Descrição: </dt>
+            <dt><%= Item.human_attribute_name 'description' %>: </dt>
             <dd><%= item.description %></dd>
           </div>
         </dl>
-        <%= button_to 'Remover Item', lot_lot_item_path(item.lot, item.lot_item), method: :delete, id: dom_id(item) %>
+        <%= button_to t('.remove_item'), lot_lot_item_path(item.lot, item.lot_item), method: :delete, id: dom_id(item) %>
       </div>
     <%end%>
   </div>
@@ -75,11 +75,11 @@
         </div>
         <dl>
           <div>
-            <dt>Nome: </dt>
+            <dt><%= Item.human_attribute_name 'name' %>: </dt>
             <dd><%= item.name %></dd>
           </div>
           <div>
-            <dt>Descrição: </dt>
+            <dt><%= Item.human_attribute_name 'description' %>: </dt>
             <dd><%= item.description %></dd>
           </div>
         </dl>

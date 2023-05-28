@@ -1,4 +1,4 @@
-<h1>Cadastrar novo item</h1>
+<h1><%= t('.new_item') %></h1>
 
 <% if @item.errors.any?%>
   <ul>
@@ -44,6 +44,6 @@
     <%= f.file_field :image %>
   </div>
   <div>
-    <%= f.submit 'Salvar' %>
+    <%= f.submit t('.save') %>
   </div>
 <%end%>

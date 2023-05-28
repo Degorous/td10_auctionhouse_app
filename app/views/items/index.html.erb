@@ -1,4 +1,4 @@
-<h1>Items Cadastrados</h1>
+<h1><%= t('.registered_items') %></h1>
 
 <% @items.each do |item| %>
   <div>
@@ -8,11 +8,11 @@
   </div>
   <dl>
     <div>
-      <dt>Nome: </dt>
+      <dt><%= Item.human_attribute_name 'name' %>: </dt>
       <dd><%= item.name %></dd>
     </div>
     <div>
-      <dt>Descrição: </dt>
+      <dt><%= Item.human_attribute_name 'description' %>: </dt>
       <dd><%= item.description %></dd>
     </div>
   </dl>
